@@ -259,14 +259,22 @@ function createFilesListTab() {
 		}, false);
 		container.appendChild(lineFile);
 	}
+	container.appendChild(headerCreate("Bulk export"));
+	var bulkExportTvg = propertiesLineCreate("Export .tvg file");
+	bulkExportTvg.addEventListener("click", bulkExportToTvg, false);
+	container.appendChild(bulkExportTvg);
+	var bulkExportPng = propertiesLineCreate("Export .png file");
+	bulkExportPng.addEventListener("click", bulkExportToPng, false);
+	container.appendChild(bulkExportPng);
 }
 
 function loadFileFromList(file) {
 	if (!player) {
 		alert("Webassembly module is not ready yet. Please try again.");
-		return;
+		return false;
 	}
 	player.loadFile(file);
+	return true;
 }
 
 //aside and nav
@@ -573,6 +581,19 @@ function exportCanvasToPng() {
 		link.click();
 		document.body.removeChild(link);
 	}, 'image/png');
+}
+
+function bulkExportToTvg() {
+	for (let i = 0; i < filesList.length; ++i) {
+		let file = filesList[i];
+		
+	}
+}
+
+function bulkExportToPng() {
+	for (let i = 0; i < filesList.length; ++i) {
+		let file = filesList[i];
+	}	
 }
 
 function highlightLayer(event) {
